@@ -48,14 +48,16 @@
                     </a>
                   </li> 
               <form id="cat" method="POST">
-             
-                  <input type="text" class="form-control">
-
+              {% csrf_token %}
+                <div id="catinput" >
+                {{formcat}}
+                
                   <button type="submit" class="btn btn-success">save</button>
                   <button id="backcat" class="btn btn-primary ">back</button>
+                </div>  
               </form>  
              {%for cat in category%}
-                  <li style="cursor: pointer;" class="nav-item">
+                  <li style="cursor: pointer;" class="nav-item cat{{cat.id}}">
                     <a id="" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>{{cat.name}}</p>
@@ -67,19 +69,19 @@
 
           <li class="nav-header">الكتب المستعارة</li>
           
-          <li style="cursor: pointer;" class="nav-item">
+          <li style="cursor: pointer;" class="nav-item statussold">
             <a id="statusSold" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p class="text">تم بيعه</p>
             </a>
           </li>
-          <li style="cursor: pointer;" class="nav-item">
+          <li style="cursor: pointer;" class="nav-item statusrental">
             <a id="" class="nav-link">
               <i class="nav-icon far fa-circle text-warning"></i>
               <p>تم استعارته</p>
             </a>
           </li>
-          <li style="cursor: pointer;" class="nav-item">
+          <li style="cursor: pointer;" class="nav-item statusavailable">
             <a id="" class="nav-link">
               <i class="nav-icon far fa-circle text-info"></i>
               <p>متاح</p>

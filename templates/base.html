@@ -49,7 +49,31 @@
 <!-- OPTIONAL SCRIPTS -->
 <script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
 <script src="{% static 'dist/js/demo.js' %}"></script>
+<script>
+  $("#catinput").hide();
+  $("#addcat").click(function(){
+    $("#catinput").show();
+  });
+  $("#backcat").click(function(){
+    $("#catinput").hide();
+  });
+  
 
+{% for book in books %}
+$(".cat{{book.category.id}}").click(function(){
+$(".bookhide").hide()
+$(".book{{book.category.id}}").show()
+});
+
+
+$(".status{{book.status}}").click(function(){
+$(".bookhide").hide()
+$(".book{{book.status}}").show()
+});
+{%endfor%}
+
+
+</script>
 
 <script>
   $(document).ready(function(){
@@ -57,6 +81,7 @@
       $('#myInput').trigger('focus')
     });
 /*here i will make loop for get id category and status for contact with books */
+
 /*حساب اجمالي الارباح و هي عبارة عن حاصل جمع سعر الكتب عند البيع بالاضافة الى سعر استعارة الكتاب*/
   });
 </script>
