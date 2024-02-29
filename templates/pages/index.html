@@ -27,7 +27,7 @@
                 <div class="card-body">
                   <div class="d-flex">
                     <p class="d-flex flex-column">
-                      <span class="text-bold text-lg">500</span>
+                      <span class="text-bold text-lg">{{all_books}}</span>
                       <span>اجمالي عدد الكتب</span>
                     </p>  
                   </div>
@@ -41,7 +41,37 @@
               <!-- /.card -->
             </div>
             <!-- /.col-md-6 -->
-            
+            {% comment %} soldbook {% endcomment %}
+            {% for book in books %}
+            {% if book.price is not None and book.status == 'sold' %}
+                <p class="totalprice">{{ book.price }}</p>  
+            {% endif %}
+            {% if book.total_rental is not None and book.status == 'rented' %}
+                <p class="totalprice">{{ book.total_rental }}</p>
+            {% endif %}
+        {% endfor %}
+
+
+
+{% comment %}  arbah rentalbook {% endcomment %}
+{% for book in books %}
+    {% if book.total_rental is not None and book.status == 'rented' %}
+        <p class="totalrental">{{ book.total_rental }}</p>  
+    {% endif %}
+{% endfor %}
+<p class="salaryrental"></p>
+
+{% comment %}  arbah soldbook {% endcomment %}
+{% for book in books %}
+    {% if book.price is not None and book.status == 'sold' %}
+        <p class="totalsold">{{ book.price }}</p>
+    {% endif %}
+{% endfor %}
+<p class="salarysold"></p>
+
+
+       
+      
             <div class="col-lg-6">
               <div class="card">
                 <div class="card-header border-0">
@@ -52,7 +82,7 @@
                 <div class="card-body">
                   <div class="d-flex">
                     <p class="d-flex flex-column">
-                      <span id="totalsalarys" class="text-bold text-lg">$250</span><br></p>
+                      <span id="totalsalarys" class="text-bold text-lg">$</span><br></p>
                   </div>
                   <!-- /.d-flex -->
   
@@ -89,10 +119,12 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form method="POST" enctype="multipart/form-data"  > 
+            <form method="POST" enctype="multipart/form-data">
+
+              
               <div class="card-body"> 
               {% csrf_token %}
-               {{form}} 
+              {{form}} 
                 
               </div>
               <!-- /.card-body -->
@@ -100,6 +132,7 @@
                 <button type="submit" class="btn btn-primary">اضافة</button>
               </div>
             </form>
+
           </div>
   
                 <!-- /.card -->
@@ -125,7 +158,7 @@
           <div class="row">
         {%for book in books %}
           <!-- الكتب -->
-              <div id="" class="col-md-4 bookhide book{{book.category.id}} book{{book.status}}">
+              <div id="" class="col-md-4 bookhide book{{book.category.id}} book{{book.status}} ">
                   <!-- Widget: user widget style 1 -->
                 <div id="" class="card card-widget widget-user ">
                   <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -171,7 +204,7 @@
                                   <span class="description-text">Prix</span>
                               {% elif book.status == 'rented' %}
                                   <h5 class="description-header">dh{{book.retal_price_day}}</h5>
-                                  <span class="description-text">Prix par jour</span>
+                                  <span class="description-text">Prix/jr</span>
                               {% endif %} 
                           </div>
          

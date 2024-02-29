@@ -50,6 +50,45 @@
 <script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
 <script src="{% static 'dist/js/demo.js' %}"></script>
 <script>
+
+
+
+  $(document).ready(function(){
+    var total=0;
+    $('.totalprice').each(function(){
+        $(this).hide();  
+        var salary= $(this).text()
+        total+=parseInt(salary)
+    });
+    
+    $("#totalsalarys").text($("#totalsalarys").text()+ total)
+});
+
+
+var total2 = 0;
+$(".totalsold").each(function(){
+    $(this).hide();
+    var salary2 = $(this).text();
+    total2 += parseInt(salary2);
+});
+$(".salarysold").text(total2);
+$(".salarysold").hide();
+
+var total1 = 0;
+$(".totalrental").each(function(){
+    $(this).hide();
+    var salary1 = $(this).text();
+    total1 += parseInt(salary1);
+    
+});
+$(".salaryrental").text(total1);
+$(".salaryrental").hide();
+
+
+$('#rentaldays').keyup(function(){
+    $('#rentaltotal').val($('#rentaldays').val() * $('#rentalprice').val());
+});
+
   $("#catinput").hide();
   $("#addcat").click(function(){
     $("#catinput").show();
@@ -67,8 +106,8 @@ $(".book{{book.category.id}}").show()
 
 
 $(".status{{book.status}}").click(function(){
-$(".bookhide").hide()
-$(".book{{book.status}}").show()
+  $(".bookhide").hide()
+  $(".book{{book.category.id}}").show()
 });
 {%endfor%}
 
@@ -121,16 +160,12 @@ $(function () {
         {
           backgroundColor: '#007bff',
           borderColor    : '#007bff',
-          data           : [ 
-               '50',
-          ]
+          data           : [$(".salarysold").text()]
         },
         {
           backgroundColor: '#ced4da',
           borderColor    : '#ced4da',
-          data           : [ 
-                '30',
-          ]
+          data           :[$(".salaryrental").text()]
         }
       ]
     },
@@ -189,7 +224,7 @@ $(function () {
     type: 'pie',
     data: {
       datasets: [{
-        data: ['35','25','40'],
+        data: ['{{booksavailable}}','{{bookssold}}','{{bookssold}}'],
         backgroundColor :["#27c100","#f3545d","#fdaf4b"],
         borderWidth: 10,
         

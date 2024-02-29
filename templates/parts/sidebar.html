@@ -3,7 +3,7 @@
   <!-- Main Sidebar Container -->
   <aside style="position: fixed;" class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="{%url 'index'%}"  class="brand-link">
       <span class="brand-text font-weight-light">NOUVIL</span>
     </a>
 
@@ -14,7 +14,7 @@
         <div class="image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Abdelrahman Gamal</a>
+          <a href="{%url 'index'%}"  class="d-block">Elalaoui chayma</a>
         </div>
       </div>
 
@@ -23,7 +23,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="books" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 New Books
@@ -67,15 +67,16 @@
             </ul>
           </li>
 
-          <li class="nav-header">الكتب المستعارة</li>
+          <li class="nav-header"> Status</li>
           
           <li style="cursor: pointer;" class="nav-item statussold">
-            <a id="statusSold" class="nav-link">
+            <a id="" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p class="text">تم بيعه</p>
             </a>
           </li>
-          <li style="cursor: pointer;" class="nav-item statusrental">
+          {% comment %}  prq si on ecrit  statusrented ou autre nom ca marche pas {% endcomment %}
+          <li style="cursor: pointer;" class="nav-item statusrented">
             <a id="" class="nav-link">
               <i class="nav-icon far fa-circle text-warning"></i>
               <p>تم استعارته</p>
